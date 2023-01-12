@@ -1,11 +1,22 @@
 package org.example.entities;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "alumnos")
 public class Alumno {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(length = 30, unique = true)
     private String nombre;
+    @Column(length = 50, unique = true)
     private String primerApellido;
+    @Column(length = 50, unique = true)
     private String segundoApellido;
+    @Column(length = 20, unique = true)
     private int nia;
+    @Column(length = 20, unique = true)
     private int numeroTelefono;
 
     public Alumno() {

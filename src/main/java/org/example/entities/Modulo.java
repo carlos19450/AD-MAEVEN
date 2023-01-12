@@ -1,11 +1,21 @@
 package org.example.entities;
 
-public class Modulo {
-    private int id;
-    private String nombre;
-    private int curso;
-    private int horasSemanales;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "modulos")
+public class Modulo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(length = 30, unique = true)
+    private String nombre;
+    @Column(length = 50, unique = true)
+    private int curso;
+    @Column(length = 30, unique = true)
+    private int horasSemanales;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Profesor profesor;
     public Modulo() {
     }
 
@@ -13,6 +23,13 @@ public class Modulo {
         this.nombre = nombre;
         this.curso = curso;
         this.horasSemanales = horasSemanales;
+    }
+
+    public Modulo(String nombre, int curso, int horasSemanales, Profesor profesor) {
+        this.nombre = nombre;
+        this.curso = curso;
+        this.horasSemanales = horasSemanales;
+        this.profesor = profesor;
     }
 
     public int getId() {
@@ -47,6 +64,14 @@ public class Modulo {
         this.horasSemanales = horasSemanales;
     }
 
+    public Profesor getProfesor() {
+        return profesor;
+    }
+
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
+    }
+
     @Override
     public String toString() {
         return "Modulo{" +
@@ -54,6 +79,7 @@ public class Modulo {
                 ", nombre='" + nombre + '\'' +
                 ", curso=" + curso +
                 ", horasSemanales=" + horasSemanales +
+                ", profesor=" + profesor +
                 '}';
     }
 }

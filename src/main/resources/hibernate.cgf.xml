@@ -18,6 +18,7 @@
         <property name="show_sql">true</property>
 
         <!-- List of XML mapping files -->
-        <!--<mapping class="org.example.entities.Piloto"></mapping> -->
+        <mapping class="org.example.entities.Modulo"></mapping>
+        <mapping class="org.example.entities.Profesor"></mapping>
     </session-factory>
 </hibernate-configuration>

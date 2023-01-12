@@ -1,10 +1,20 @@
 package org.example.entities;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "direcciones")
 public class Direccion {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(length = 30, unique = true)
     private String calle;
+    @Column(length = 50, unique = true)
     private int numero;
+    @Column(length = 30, unique = true)
     private String poblacion;
+    @Column(length = 30, unique = true)
     private String provincia;
 
     public Direccion() {
