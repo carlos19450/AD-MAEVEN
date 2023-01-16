@@ -5,16 +5,18 @@ import org.example.entities.Profesor;
 import org.example.repositories.ModuloRepository;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 public class App
 {
     public static void main( String[] args )
     {
         ModuloRepository modulos = new ModuloRepository();
-
+        //Crear profesor
         Profesor p1 = new Profesor("Paco", "Perez", "Cacho", 675648321, "Calle Perico/8");
-
+        //Crear modulos
         Modulo m1 = new Modulo("Matematicas", 4, 16, p1);
         Modulo m2 = new Modulo("Ingles", 2, 8, p1);
 

@@ -10,17 +10,17 @@ public class Profesor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(length = 30, unique = true)
+    @Column(length = 30)
     private String nombre;
-    @Column(length = 50, unique = true)
+    @Column(length = 50)
     private String primerApellido;
-    @Column(length = 50, unique = true)
+    @Column(length = 50)
     private String segundoApellido;
     @Column(length = 20, unique = true)
     private int numeroTelefono;
-    @Column(length = 50, unique = true)
+    @Column(length = 50)
     private String direccion;
-    @OneToMany(mappedBy = "equipo", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "profesor", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Modulo> modulo;
 
     public Profesor() {
@@ -108,7 +108,6 @@ public class Profesor {
                 ", segundoApellido='" + segundoApellido + '\'' +
                 ", numeroTelefono=" + numeroTelefono +
                 ", direccion='" + direccion + '\'' +
-                ", modulo=" + modulo +
                 '}';
     }
 }

@@ -2,22 +2,26 @@ package org.example.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "alumnos")
 public class Alumno {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(length = 30, unique = true)
+    @Column(length = 30)
     private String nombre;
-    @Column(length = 50, unique = true)
+    @Column(length = 50)
     private String primerApellido;
-    @Column(length = 50, unique = true)
+    @Column(length = 50)
     private String segundoApellido;
     @Column(length = 20, unique = true)
     private int nia;
     @Column(length = 20, unique = true)
     private int numeroTelefono;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<Modulo> modulos;
 
     public Alumno() {
     }
@@ -28,6 +32,15 @@ public class Alumno {
         this.segundoApellido = segundoApellido;
         this.nia = nia;
         this.numeroTelefono = numeroTelefono;
+    }
+
+    public Alumno(String nombre, String primerApellido, String segundoApellido, int nia, int numeroTelefono, Set<Modulo> modulos) {
+        this.nombre = nombre;
+        this.primerApellido = primerApellido;
+        this.segundoApellido = segundoApellido;
+        this.nia = nia;
+        this.numeroTelefono = numeroTelefono;
+        this.modulos = modulos;
     }
 
     public int getId() {
@@ -78,6 +91,14 @@ public class Alumno {
         this.numeroTelefono = numeroTelefono;
     }
 
+    public Set<Modulo> getModulos() {
+        return modulos;
+    }
+
+    public void setModulos(Set<Modulo> modulos) {
+        this.modulos = modulos;
+    }
+
     @Override
     public String toString() {
         return "Alumno{" +
@@ -87,6 +108,7 @@ public class Alumno {
                 ", segundoApellido='" + segundoApellido + '\'' +
                 ", nia=" + nia +
                 ", numeroTelefono=" + numeroTelefono +
+                ", modulos=" + modulos +
                 '}';
     }
 }

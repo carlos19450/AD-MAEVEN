@@ -2,6 +2,8 @@ package org.example.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "modulos")
 public class Modulo {
@@ -12,10 +14,12 @@ public class Modulo {
     private String nombre;
     @Column(length = 50, unique = true)
     private int curso;
-    @Column(length = 30, unique = true)
+    @Column(length = 30)
     private int horasSemanales;
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Profesor profesor;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<Alumno> alumnos;
     public Modulo() {
     }
 
@@ -30,6 +34,14 @@ public class Modulo {
         this.curso = curso;
         this.horasSemanales = horasSemanales;
         this.profesor = profesor;
+    }
+
+    public Modulo(String nombre, int curso, int horasSemanales, Profesor profesor, Set<Alumno> alumnos) {
+        this.nombre = nombre;
+        this.curso = curso;
+        this.horasSemanales = horasSemanales;
+        this.profesor = profesor;
+        this.alumnos = alumnos;
     }
 
     public int getId() {
@@ -72,6 +84,14 @@ public class Modulo {
         this.profesor = profesor;
     }
 
+    public Set<Alumno> getAlumnos() {
+        return alumnos;
+    }
+
+    public void setAlumnos(Set<Alumno> alumnos) {
+        this.alumnos = alumnos;
+    }
+
     @Override
     public String toString() {
         return "Modulo{" +
@@ -80,6 +100,7 @@ public class Modulo {
                 ", curso=" + curso +
                 ", horasSemanales=" + horasSemanales +
                 ", profesor=" + profesor +
+                ", alumnos=" + alumnos +
                 '}';
     }
 }
