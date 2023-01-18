@@ -18,15 +18,16 @@ public class Profesor {
     private String segundoApellido;
     @Column(length = 20, unique = true)
     private int numeroTelefono;
-    @Column(length = 50)
-    private String direccion;
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @PrimaryKeyJoinColumn
+    private Direccion direccion;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "profesor", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Modulo> modulo;
 
     public Profesor() {
     }
 
-    public Profesor(String nombre, String primerApellido, String segundoApellido, int numeroTelefono, String direccion) {
+    public Profesor(String nombre, String primerApellido, String segundoApellido, int numeroTelefono, Direccion direccion) {
         this.nombre = nombre;
         this.primerApellido = primerApellido;
         this.segundoApellido = segundoApellido;
@@ -34,7 +35,7 @@ public class Profesor {
         this.direccion = direccion;
     }
 
-    public Profesor(String nombre, String primerApellido, String segundoApellido, int numeroTelefono, String direccion, Set<Modulo> modulo) {
+    public Profesor(String nombre, String primerApellido, String segundoApellido, int numeroTelefono, Direccion direccion, Set<Modulo> modulo) {
         this.nombre = nombre;
         this.primerApellido = primerApellido;
         this.segundoApellido = segundoApellido;
@@ -83,11 +84,11 @@ public class Profesor {
         this.numeroTelefono = numeroTelefono;
     }
 
-    public String getDireccion() {
+    public Direccion getDireccion() {
         return direccion;
     }
 
-    public void setDireccion(String direccion) {
+    public void setDireccion(Direccion direccion) {
         this.direccion = direccion;
     }
 

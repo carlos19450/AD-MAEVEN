@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.entities.Alumno;
+import org.example.entities.Direccion;
 import org.example.entities.Modulo;
 import org.example.entities.Profesor;
 import org.example.repositories.ModuloRepository;
@@ -14,8 +16,13 @@ public class App
     public static void main( String[] args )
     {
         ModuloRepository modulos = new ModuloRepository();
+        //Crear alumnos
+        Alumno al1 = new Alumno("Pepe", "Ramon", "Floco", 65748347, 123456789);
+        Alumno al2 = new Alumno("Romo", "Grano", "Tran", 58745634, 987654321);
+        //Crear direccion
+        Direccion d1 = new Direccion("Pepon", 2, "Castellon", "Castellon");
         //Crear profesor
-        Profesor p1 = new Profesor("Paco", "Perez", "Cacho", 675648321, "Calle Perico/8");
+        Profesor p1 = new Profesor("Paco", "Perez", "Cacho", 675648321, d1);
         //Crear modulos
         Modulo m1 = new Modulo("Matematicas", 4, 16, p1);
         Modulo m2 = new Modulo("Ingles", 2, 8, p1);
@@ -55,13 +62,9 @@ public class App
             System.out.println(m2);
         }else
             System.out.println("El id del modulo no existe");
-
-
-        // Borrado del piloto p3
-        modulos.deleteById(2);
-
         // Ver todos
         System.out.println("\nBorrado y lectura ------ ");
+        modulos.deleteById(2);
         modulos.findAll().forEach(System.out::println);
 
         modulos.close();
