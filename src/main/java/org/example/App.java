@@ -28,20 +28,22 @@ public class App
         Modulo m2 = new Modulo("Ingles", 2, 8, p1);
 
         System.out.println("\nAñadir alumnos a modulos -------");
+        m1.anadirAlumno(al1);
+        m2.anadirAlumno(al2);
 
         System.out.println("\nAntes de insertar ------ ");
         System.out.println(m1);
         System.out.println(m2);
 
         //Crear modulos
+        System.out.println("\nCreamos modulos ------");
         modulos.save(m1);
         modulos.save(m2);
-        System.out.println("\nCreamos modulos ------");
         modulos.findAll().forEach(System.out::println);
 
         //Leer por id
-        Optional<Modulo> pilotoCopia = modulos.findOneById(m2.getId());
         System.out.println("\nLeer por id ------ ");
+        Optional<Modulo> pilotoCopia = modulos.findOneById(m2.getId());
         if (pilotoCopia.isPresent())
             System.out.println(pilotoCopia);
         else
