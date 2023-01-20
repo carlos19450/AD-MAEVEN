@@ -19,7 +19,7 @@ public class Modulo {
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Profesor profesor;
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<Alumno> alumnos;
+    private Set<Alumno> alumnos  = new HashSet<>();
     public Modulo() {
     }
 
@@ -90,6 +90,16 @@ public class Modulo {
 
     public void setAlumnos(Set<Alumno> alumnos) {
         this.alumnos = alumnos;
+    }
+
+    public void anadirAlumno(Alumno alumno) {
+        this.alumnos.add(alumno);
+        alumno.getModulos().add(this);
+    }
+
+    public void eliminarAlumno(Alumno alumno) {
+        this.alumnos.remove(alumno);
+        alumno.getModulos().remove(this);
     }
 
     @Override

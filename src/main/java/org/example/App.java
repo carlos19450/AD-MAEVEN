@@ -27,6 +27,8 @@ public class App
         Modulo m1 = new Modulo("Matematicas", 4, 16, p1);
         Modulo m2 = new Modulo("Ingles", 2, 8, p1);
 
+        System.out.println("\nAñadir alumnos a modulos -------");
+
         System.out.println("\nAntes de insertar ------ ");
         System.out.println(m1);
         System.out.println(m2);

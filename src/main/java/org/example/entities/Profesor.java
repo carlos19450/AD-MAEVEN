@@ -27,12 +27,21 @@ public class Profesor {
     public Profesor() {
     }
 
+    public Profesor(String nombre, String primerApellido, String segundoApellido, int numeroTelefono) {
+        this.nombre = nombre;
+        this.primerApellido = primerApellido;
+        this.segundoApellido = segundoApellido;
+        this.numeroTelefono = numeroTelefono;
+        this.direccion = direccion;
+    }
+
     public Profesor(String nombre, String primerApellido, String segundoApellido, int numeroTelefono, Direccion direccion) {
         this.nombre = nombre;
         this.primerApellido = primerApellido;
         this.segundoApellido = segundoApellido;
         this.numeroTelefono = numeroTelefono;
         this.direccion = direccion;
+        this.modulo = modulo;
     }
 
     public Profesor(String nombre, String primerApellido, String segundoApellido, int numeroTelefono, Direccion direccion, Set<Modulo> modulo) {

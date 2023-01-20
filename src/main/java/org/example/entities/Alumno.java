@@ -20,7 +20,7 @@ public class Alumno {
     private int nia;
     @Column(length = 20, unique = true)
     private int numeroTelefono;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "alumnos")
     private Set<Modulo> modulos;
 
     public Alumno() {
