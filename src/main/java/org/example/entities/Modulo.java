@@ -2,12 +2,13 @@ package org.example.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "modulos")
-public class Modulo {
+public class Modulo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -96,11 +97,6 @@ public class Modulo {
     public void anadirAlumno(Alumno alumno) {
         this.alumnos.add(alumno);
         alumno.getModulos().add(this);
-    }
-
-    public void eliminarAlumno(Alumno alumno) {
-        this.alumnos.remove(alumno);
-        alumno.getModulos().remove(this);
     }
 
     @Override

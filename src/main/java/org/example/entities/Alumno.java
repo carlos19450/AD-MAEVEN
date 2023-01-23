@@ -2,11 +2,12 @@ package org.example.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "alumnos")
-public class Alumno {
+public class Alumno implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -92,7 +93,7 @@ public class Alumno {
     }
 
     public Set<Modulo> getModulos() {
-        return modulos;
+        return this.modulos;
     }
 
     public void setModulos(Set<Modulo> modulos) {
